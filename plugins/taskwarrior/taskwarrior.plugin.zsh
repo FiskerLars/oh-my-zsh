@@ -18,4 +18,10 @@ zstyle ':completion:*:*:task:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:*:task:*' group-name ''
 
 alias t=task
+
+alias task.todo="task 'due.before:today and (status:pending  or status:active)' ; task 'due:today and (status:pending or status:active)'"
+alias task.doing="task status:active"
+alias task.week="task 'due.before:eow and (status:pending or status:active)'"
+alias task.month="task 'due.before:eom and (status:pending or status:active)'"
+
 compdef _task t=task
