@@ -24,4 +24,6 @@ alias task.doing="task status:active"
 alias task.week="task 'due.before:eow and (status:pending or status:active)'"
 alias task.month="task 'due.before:eom and (status:pending or status:active)'"
 
+alias task.addtimed="task add rc.dateformat:Y/M/D H:N:S"
+
 compdef _task t=task
