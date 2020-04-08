@@ -17,13 +17,21 @@ zstyle ':completion:*:*:task:*:descriptions' format '%U%B%d%b%u'
 
 zstyle ':completion:*:*:task:*' group-name ''
 
-alias t=task
+# alias t=task
 
+alias task.today="task 'due:today'"
 alias task.todo="task 'due.before:today and (status:pending  or status:active)' ; task 'due:today and (status:pending or status:active)'"
 alias task.doing="task status:active"
 alias task.week="task 'due.before:eow and (status:pending or status:active)'"
 alias task.month="task 'due.before:eom and (status:pending or status:active)'"
 
-alias task.addtimed="task add rc.dateformat:Y/M/D H:N:S"
+alias task.addtimed="task add rc.dateformat:Y-M-DTH:N:S"
+function task.addstart() {
+## Add and directly start a task
+    taskid=`task add $* | sed 's/^.* \([1234567890]*\)\..*$/\1/' `
+    task $taskid start
+}
+
+alias task.pdf="task list | a2pdf --noline-numbers --title "Open Tasks" --line-spacing 14"
 
 compdef _task t=task
